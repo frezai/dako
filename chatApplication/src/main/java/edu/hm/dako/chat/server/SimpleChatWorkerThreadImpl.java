@@ -1,8 +1,14 @@
 package edu.hm.dako.chat.server;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.ObjectOutputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.Socket;
 import java.net.SocketException;
 import java.util.Vector;
 
@@ -410,23 +416,26 @@ public class SimpleChatWorkerThreadImpl extends AbstractWorkerThread {
 		try {
 			switch (receivedPdu.getPduType()) {
 
-			// hier Paket AuditlogPdu rein muss in AuditServer rauskommen statt diesem Strig
+			// hier Paket AuditlogPdu rein muss in AuditServer rauskommen statt diesem String
 			case LOGIN_REQUEST:
 				// Login-Request vom Client empfangen
-				
-				// TODO hier senden
 				loginRequestAction(receivedPdu);   
-				testMethode("EIn login ist angekommen");
+//				testMethode("Ein login ist angekommen");
+				testMethodeTCP("Ein login ist angekommen");
 				break;
 
 			case CHAT_MESSAGE_REQUEST:
 				// Chat-Nachricht angekommen, an alle verteilen
 				chatMessageRequestAction(receivedPdu);
+//				testMethode("Eine Nachricht ist angekommen");
+				testMethodeTCP("Eine Nachricht ist angekommen");
 				break;
 
 			case LOGOUT_REQUEST:
 				// Logout-Request vom Client empfangen
 				logoutRequestAction(receivedPdu);
+//				testMethode("Ein logout ist angekommen");
+				testMethodeTCP("Ein logout ist angekommen");
 				break;
 
 			default:
@@ -455,4 +464,16 @@ public class SimpleChatWorkerThreadImpl extends AbstractWorkerThread {
 			e.printStackTrace();
 		}
 	}
+
+	private void testMethodeTCP(String input) {
+		try {
+			Socket clientSocket = new Socket("localhost", 6789);
+			ObjectOutputStream outToServer = new ObjectOutputStream(clientSocket.getOutputStream());
+			  outToServer.writeObject(input);
+			  clientSocket.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 }

@@ -1,11 +1,8 @@
 package edu.hm.dako.chat.server;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.SocketException;
 
 public class MyUDPAuditServer {
 
@@ -21,12 +18,9 @@ public class MyUDPAuditServer {
 			String sentence = new String(receivePacket.getData());
 			System.out.println("RECEIVED: " + sentence);
 			
-			PrintWriter writer = new PrintWriter("the-file-name.txt", "UTF-8");
+			PrintWriter writer = new PrintWriter("UDP-file.txt", "UTF-8");
 			writer.println(sentence);
 			writer.close();
 		}
 	}
-	
-
 }
-

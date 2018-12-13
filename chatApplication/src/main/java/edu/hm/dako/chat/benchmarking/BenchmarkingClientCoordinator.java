@@ -23,6 +23,7 @@ import edu.hm.dako.chat.common.SharedClientStatistics;
  */
 public class BenchmarkingClientCoordinator extends Thread
 		implements BenchmarkingStartInterface, ClientUserInterface {
+	
 	private static Log log = LogFactory.getLog(BenchmarkingClientCoordinator.class);
 
 	// Daten aller Client-Threads zur Verwaltung der Statistik
