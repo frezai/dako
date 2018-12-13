@@ -17,6 +17,8 @@ public class MyAuditLogPDU {
 	// Name des Client-Threads, der den Request absendet
 	private String clientThreadName;
 	
+	private ChatPDU receivedPDU;
+	
 	// Nutzdaten (eigentliche Chat-Nachricht in Textform)
 	private String message;
 	
@@ -26,18 +28,34 @@ public class MyAuditLogPDU {
 		serverThreadName = null;
 		message = null;
 	}
-
+	
+	public MyAuditLogPDU(ChatPDU receivedPDU) {
+		this.receivedPDU = receivedPDU;
+	}
+	
 	public String toString() {
 
-		return "\n"
-				+ "ChatPdu ****************************************************************************************************"
-				+ "\n" + "userName: " + this.userName
-				+ ", " + "\n" + "clientThreadName: " + this.clientThreadName + ", " + "\n"
-				+ "serverThreadName: " + this.serverThreadName + ", " + "\n" 
-				+ "message: " + this.message + "\n"
-				+ "**************************************************************************************************** ChatPdu"
-				+ "\n";
+		return 
+				 "ChatPdu ****************************************************************************************************" 
+				+ "userName: " + receivedPDU.getUserName()
+				+ ", clientThreadName: " + receivedPDU.getClientThreadName() + ", "
+				+ "serverThreadName: " + receivedPDU.getServerThreadName() + ", "
+						+ "PDUType " + receivedPDU.getPduType()
+				+ "message: " + receivedPDU.getMessage()
+				+ "**************************************************************************************************** ChatPdu";
 	}
+
+//	public String toString() {
+//
+//		return "\n"
+//				+ "ChatPdu ****************************************************************************************************"
+//				+ "\n" + "userName: " + this.userName
+//				+ ", " + "\n" + "clientThreadName: " + this.clientThreadName + ", " + "\n"
+//				+ "serverThreadName: " + this.serverThreadName + ", " + "\n" 
+//				+ "message: " + this.message + "\n"
+//				+ "**************************************************************************************************** ChatPdu"
+//				+ "\n";
+//	}
 	
 	/**
 	 * Erzeugen einer Logout-Event-PDU

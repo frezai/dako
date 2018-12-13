@@ -14,6 +14,7 @@ public class MyTCPAuditServer {
 	  String capitalizedSentence;
 	  ServerSocket welcomeSocket = new ServerSocket(6789);
 
+	  System.out.println("TCP Server wird gestartet");
 	  while (true) {
 	   Socket connectionSocket = welcomeSocket.accept();
 	   BufferedReader inFromClient =
