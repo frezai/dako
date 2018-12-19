@@ -1,12 +1,13 @@
 package edu.hm.dako.chat.server;
 
+import java.io.Serializable;
 import java.util.Vector;
 
 import edu.hm.dako.chat.common.ChatPDU;
 import edu.hm.dako.chat.common.ClientConversationStatus;
 import edu.hm.dako.chat.common.PduType;
 
-public class MyAuditLogPDU {
+public class MyAuditLogPDU implements Serializable  {
 	
 	// Login-Name des Clients
 	private String userName;

@@ -420,14 +420,16 @@ public class SimpleChatWorkerThreadImpl extends AbstractWorkerThread {
 			case LOGIN_REQUEST:
 				// Login-Request vom Client empfangen
 				loginRequestAction(receivedPdu);   
-//				testMethode("Ein login ist angekommen");
-				MyAuditLogPDU auditLogPDU = new MyAuditLogPDU(receivedPdu);
-				testMethodeTCP(auditLogPDU.toString());
+				
+				testMethode("Ein login ist angekommen");
+				//MyAuditLogPDU auditLogPDU = new MyAuditLogPDU(receivedPdu);
+				//testMethodeTCP(auditLogPDU.toString());
 				break;
 
 			case CHAT_MESSAGE_REQUEST:
 				// Chat-Nachricht angekommen, an alle verteilen
 				chatMessageRequestAction(receivedPdu);
+				testMethode(receivedPdu.getMessage());
 //				testMethode("Eine Nachricht ist angekommen");
 //				testMethodeTCP("Eine Nachricht ist angekommen");
 				break;

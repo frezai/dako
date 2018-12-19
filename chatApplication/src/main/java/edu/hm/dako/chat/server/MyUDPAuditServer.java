@@ -1,5 +1,6 @@
 package edu.hm.dako.chat.server;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -10,17 +11,26 @@ public class MyUDPAuditServer {
 		//erstellt serverSoket mit Portnummer
 		DatagramSocket serverSocket = new DatagramSocket(9876);
 		// bekommene Datei byte von 1024
-		byte[] receiveData = new byte[1024];
+		PrintWriter writer = new PrintWriter("UDP-file.txt", "UTF-8");
 		while (true) {
 			// bekommt das DatagramPaket mit der Nachricht
-			DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
-			serverSocket.receive(receivePacket);
-			String sentence = new String(receivePacket.getData());
-			System.out.println("RECEIVED: " + sentence);
+			DatagramPacket receivePacket = receive(serverSocket, writer);
+			//serverSocket.receive(receivePacket);
 			
-			PrintWriter writer = new PrintWriter("UDP-file.txt", "UTF-8");
-			writer.println(sentence);
-			writer.close();
 		}
+	}
+	
+	static DatagramPacket receive(DatagramSocket socket, PrintWriter writer) throws IOException {
+		byte[] buffer = new byte[1024];
+		DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
+		socket.receive(packet);
+		
+		String sentence = new String(packet.getData());
+		System.out.println("RECEIVED: " + sentence);
+		
+		
+		writer.println(sentence);
+		
+		return packet;
 	}
 }
