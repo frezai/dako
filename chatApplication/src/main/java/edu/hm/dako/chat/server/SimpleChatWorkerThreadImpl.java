@@ -10,6 +10,7 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.SocketException;
+import java.sql.Timestamp;
 import java.util.Vector;
 
 import org.apache.commons.logging.Log;
@@ -94,6 +95,7 @@ public class SimpleChatWorkerThreadImpl extends AbstractWorkerThread {
 
 	@Override
 	protected void loginRequestAction(ChatPDU receivedPdu) {
+		sendToUPDAuditServer(receivedPdu);
 
 		ChatPDU pdu;
 		log.debug("Login-Request-PDU fuer " + receivedPdu.getUserName() + " empfangen");
@@ -154,6 +156,7 @@ public class SimpleChatWorkerThreadImpl extends AbstractWorkerThread {
 
 	@Override
 	protected void logoutRequestAction(ChatPDU receivedPdu) {
+		sendToUPDAuditServer(receivedPdu);
 
 		ChatPDU pdu;
 		logoutCounter.getAndIncrement();
@@ -204,7 +207,7 @@ public class SimpleChatWorkerThreadImpl extends AbstractWorkerThread {
 
 	@Override
 	protected void chatMessageRequestAction(ChatPDU receivedPdu) {
-
+		sendToUPDAuditServer(receivedPdu);
 		ClientListEntry client = null;
 		clients.setRequestStartTime(receivedPdu.getUserName(), startTime);
 		clients.incrNumberOfReceivedChatMessages(receivedPdu.getUserName());
@@ -293,9 +296,27 @@ public class SimpleChatWorkerThreadImpl extends AbstractWorkerThread {
 	/**
 	 * Antwort-PDU fuer den initiierenden Client aufbauen und senden
 	 * 
-	 * @param eventInitiatorClient
+	 *
 	 *            Name des Clients
 	 */
+
+	private void sendToUPDAuditServer(ChatPDU receivedPdu) {
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		AuditLogPDU auditLogPDU = new AuditLogPDU(receivedPdu, timestamp, Thread.currentThread().getName());
+		try {
+			DatagramSocket clientSocket = new DatagramSocket();
+			InetAddress IPAddress = InetAddress.getByName("localhost");
+			byte[] sendData;
+			String sentence = auditLogPDU.toString();
+			sendData = sentence.getBytes();
+			DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, 9876);
+			clientSocket.send(sendPacket);
+			clientSocket.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	private void sendLogoutResponse(String eventInitiatorClient) {
 
 		ClientListEntry client = clients.getClient(eventInitiatorClient);
@@ -419,26 +440,17 @@ public class SimpleChatWorkerThreadImpl extends AbstractWorkerThread {
 			// hier Paket AuditlogPdu rein muss in AuditServer rauskommen statt diesem String
 			case LOGIN_REQUEST:
 				// Login-Request vom Client empfangen
-				loginRequestAction(receivedPdu);   
-				
-				testMethode("Ein login ist angekommen");
-				//MyAuditLogPDU auditLogPDU = new MyAuditLogPDU(receivedPdu);
-				//testMethodeTCP(auditLogPDU.toString());
+				loginRequestAction(receivedPdu);
 				break;
 
 			case CHAT_MESSAGE_REQUEST:
 				// Chat-Nachricht angekommen, an alle verteilen
 				chatMessageRequestAction(receivedPdu);
-				testMethode(receivedPdu.getMessage());
-//				testMethode("Eine Nachricht ist angekommen");
-//				testMethodeTCP("Eine Nachricht ist angekommen");
 				break;
 
 			case LOGOUT_REQUEST:
 				// Logout-Request vom Client empfangen
 				logoutRequestAction(receivedPdu);
-//				testMethode("Ein logout ist angekommen");
-//				testMethodeTCP("Ein logout ist angekommen");
 				break;
 
 			default:
@@ -449,22 +461,6 @@ public class SimpleChatWorkerThreadImpl extends AbstractWorkerThread {
 		} catch (Exception e) {
 			log.error("Exception bei der Nachrichtenverarbeitung");
 			ExceptionHandler.logExceptionAndTerminate(e);
-		}
-	}
-
-	private void testMethode(String input) {
-		try {
-			DatagramSocket clientSocket = new DatagramSocket();
-			InetAddress IPAddress = InetAddress.getByName("localhost");
-			byte[] sendData = new byte[1024];
-			String sentence = input;
-			sendData = sentence.getBytes();
-			DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, 9876);
-			clientSocket.send(sendPacket);
-			clientSocket.close();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 

@@ -1,8 +1,5 @@
 package edu.hm.dako.chat.server;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
@@ -24,8 +21,8 @@ public class MyTCPAuditServer {
 			try {
 				out = new ObjectOutputStream(incoming.getOutputStream());
 				in = new ObjectInputStream(incoming.getInputStream());
-				// Empfangen über Inputstream
-				MyAuditLogPDU pdu = (MyAuditLogPDU) in.readObject();
+				// Empfangen ï¿½ber Inputstream
+				AuditLogPDU pdu = (AuditLogPDU) in.readObject();
 				// BufferedReader inFromClient =
 				// new BufferedReader(new
 				// InputStreamReader(connectionSocket.getInputStream()));
@@ -38,8 +35,8 @@ public class MyTCPAuditServer {
 				writer.println(in);
 				writer.close();
 
-				out.writeObject(new MyAuditLogPDU());
-				// Stream und Verbindung schließen
+				out.writeObject(new AuditLogPDU());
+				// Stream und Verbindung schlieï¿½en
 				incoming.close();
 			} catch (Exception e) {
 				e.printStackTrace();
