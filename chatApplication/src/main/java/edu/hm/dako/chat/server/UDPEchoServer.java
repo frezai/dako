@@ -3,7 +3,7 @@ import java.net.*;
 import java.io.*;
 public class UDPEchoServer {
 	protected DatagramSocket socket;
-	PrintWriter printer = new PrintWriter("UDP-file.txt", "UTF-8");;
+	PrintWriter printer = new PrintWriter("UDP-file.txt", "UTF-8");
 	public UDPEchoServer (int port) throws IOException
 	{
 		socket = new DatagramSocket (port);

@@ -1,18 +1,16 @@
 package edu.hm.dako.chat.server;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.SocketException;
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Vector;
 
+import com.sun.org.apache.xml.internal.utils.ThreadControllerWrapper;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -23,6 +21,8 @@ import edu.hm.dako.chat.common.ExceptionHandler;
 import edu.hm.dako.chat.connection.Connection;
 import edu.hm.dako.chat.connection.ConnectionTimeoutException;
 import edu.hm.dako.chat.connection.EndOfFileException;
+
+import javax.xml.crypto.Data;
 
 /**
  * Worker-Thread zur serverseitigen Bedienung einer Session mit einem Client.
@@ -96,7 +96,7 @@ public class SimpleChatWorkerThreadImpl extends AbstractWorkerThread {
 	@Override
 	protected void loginRequestAction(ChatPDU receivedPdu) {
 		sendToUPDAuditServer(receivedPdu);
-
+		sendToTCPAuditServer(receivedPdu);
 		ChatPDU pdu;
 		log.debug("Login-Request-PDU fuer " + receivedPdu.getUserName() + " empfangen");
 
@@ -157,7 +157,7 @@ public class SimpleChatWorkerThreadImpl extends AbstractWorkerThread {
 	@Override
 	protected void logoutRequestAction(ChatPDU receivedPdu) {
 		sendToUPDAuditServer(receivedPdu);
-
+		sendToTCPAuditServer(receivedPdu);
 		ChatPDU pdu;
 		logoutCounter.getAndIncrement();
 		log.debug("Logout-Request von " + receivedPdu.getUserName() + ", LogoutCount = " + logoutCounter.get());
@@ -208,6 +208,7 @@ public class SimpleChatWorkerThreadImpl extends AbstractWorkerThread {
 	@Override
 	protected void chatMessageRequestAction(ChatPDU receivedPdu) {
 		sendToUPDAuditServer(receivedPdu);
+		sendToTCPAuditServer(receivedPdu);
 		ClientListEntry client = null;
 		clients.setRequestStartTime(receivedPdu.getUserName(), startTime);
 		clients.incrNumberOfReceivedChatMessages(receivedPdu.getUserName());
@@ -463,7 +464,7 @@ public class SimpleChatWorkerThreadImpl extends AbstractWorkerThread {
 			ExceptionHandler.logExceptionAndTerminate(e);
 		}
 	}
-
+/*
 	private void testMethodeTCP(String input) {
 		try {
 			Socket clientSocket = new Socket("localhost", 6789);
@@ -474,5 +475,19 @@ public class SimpleChatWorkerThreadImpl extends AbstractWorkerThread {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}*/
+
+	private void sendToTCPAuditServer(ChatPDU receivedPdu){
+		try {
+			Socket socket = new Socket("localhost", 6789);
+			ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+
+			AuditLogPDU pdu = new AuditLogPDU(receivedPdu, new Timestamp(System.currentTimeMillis()), Thread.currentThread().getName());
+			out.writeObject(pdu);
+			socket.close();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+
+	}
 }
