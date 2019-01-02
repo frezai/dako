@@ -45,6 +45,19 @@ public class AuditLogPDU implements Serializable  {
 		this.pduType = receivedPDU.getPduType();
 	}
 
+	public AuditLogPDU(PduType pduType, Timestamp timestamp, String serverThreadName) {
+		this.userName = "";
+		this.serverThreadName = serverThreadName;
+		this.clientThreadName = "";
+		this.message = "";
+		this.timestamp = timestamp;
+		this.pduType = pduType;
+	}
+
+	public PduType getPduType() {
+		return this.pduType;
+	}
+
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("PDU-TYPE: " + pduType.toString() + "| ");

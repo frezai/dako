@@ -1,5 +1,7 @@
 package edu.hm.dako.chat.server;
 
+import edu.hm.dako.chat.common.PduType;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -17,6 +19,12 @@ class MyTCPAuditServer {
 			System.out.println(pdu);
 			printer.println(pdu);
 			printer.flush();
+			if(pdu.getPduType().equals(PduType.UNDEFINED)) {
+				System.out.println("Server wird heruntergefahren!!!!!");
+				connectionSocket.close();
+				in.close();
+				System.exit(0);
+			}
 		}
 	}
 }

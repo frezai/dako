@@ -24,7 +24,10 @@ public class UDPEchoServer {
 		System.out.println ("Daten erhalten: " + sentence);
 		printer.println(sentence);
 		printer.flush();
-
+		if (sentence.contains("Undefined")) {
+			System.out.println("Server wird heruntergefahren!!!");
+			System.exit(0);
+		}
 		return packet;
 	}
 	public static void main (String args[]) throws IOException
