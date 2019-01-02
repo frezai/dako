@@ -27,6 +27,7 @@ public class UDPEchoServer {
 		if (sentence.contains("Undefined")) {
 			System.out.println("Server wird heruntergefahren!!!");
 			System.exit(0);
+			printer.close();
 		}
 		return packet;
 	}

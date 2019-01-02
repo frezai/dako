@@ -24,6 +24,7 @@ class MyTCPAuditServer {
 				connectionSocket.close();
 				in.close();
 				System.exit(0);
+				printer.close();
 			}
 		}
 	}
