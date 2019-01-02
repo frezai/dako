@@ -1,9 +1,16 @@
 package edu.hm.dako.chat.server;
 
+import java.io.ObjectOutputStream;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.Socket;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import edu.hm.dako.chat.common.PduType;
 import javafx.stage.WindowEvent;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -375,6 +382,31 @@ public class ChatServerGUI extends Application implements ChatServerGuiInterface
 		stopButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
+				try {
+					Socket socket = new Socket("localhost", 6789);
+					ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+
+					AuditLogPDU pdu = new AuditLogPDU(PduType.UNDEFINED, new Timestamp(System.currentTimeMillis()), Thread.currentThread().getName());
+					out.writeObject(pdu);
+					socket.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+				AuditLogPDU auditLogPDU = new AuditLogPDU(PduType.UNDEFINED, timestamp, Thread.currentThread().getName());
+				try {
+					DatagramSocket clientSocket = new DatagramSocket();
+					InetAddress IPAddress = InetAddress.getByName("localhost");
+					byte[] sendData;
+					String sentence = auditLogPDU.toString();
+					sendData = sentence.getBytes();
+					DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, 9876);
+					clientSocket.send(sendPacket);
+					clientSocket.close();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
 				try {
 					chatServer.stop();
@@ -403,6 +435,7 @@ public class ChatServerGUI extends Application implements ChatServerGuiInterface
 	 */
 	private void reactOnFinishButton() {
 		finishButton.setOnAction(new EventHandler<ActionEvent>() {
+
 			@Override
 			public void handle(ActionEvent event) {
 				try {
