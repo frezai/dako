@@ -81,7 +81,6 @@ public class ChatServerGUI extends Application implements ChatServerGuiInterface
 
 	// Combobox fuer Eingabe des Implementierungstyps
 	private ComboBox<String> comboBoxImplType;
-	private ComboBox<String> comboBoxAuditLogType; 
 
 	// Testfelder, Buttons und Labels der ServerGUI
 
@@ -109,7 +108,6 @@ public class ChatServerGUI extends Application implements ChatServerGuiInterface
 	// Moegliche Belegungen des Implementierungsfeldes in der GUI
 	ObservableList<String> implTypeOptions = FXCollections.observableArrayList(
 			SystemConstants.IMPL_TCP_SIMPLE);
-	ObservableList<String> auditLogImplTypeOptions = FXCollections.observableArrayList(SystemConstants.UDP_AUDITLOG, SystemConstants.TCP_AUDITLOG);
 	/**
 	 * Konstruktion der ServerGUI
 	 */
@@ -184,7 +182,6 @@ public class ChatServerGUI extends Application implements ChatServerGuiInterface
 		inputPane.setVgap(1);
 
 		comboBoxImplType = createComboBox(implTypeOptions);
-		comboBoxAuditLogType = createComboBox(auditLogImplTypeOptions);
 		serverPort = createEditableTextfield(DEFAULT_SERVER_PORT);
 		sendBufferSize = createEditableTextfield(DEFAULT_SENDBUFFER_SIZE);
 		receiveBufferSize = createEditableTextfield(DEFAULT_RECEIVEBUFFER_SIZE);
@@ -192,7 +189,6 @@ public class ChatServerGUI extends Application implements ChatServerGuiInterface
 		inputPane.add(label, 1, 3);
 		inputPane.add(comboBoxImplType, 3, 3);
 		inputPane.add(label2, 1, 4);
-		inputPane.add(comboBoxAuditLogType, 3, 4);
 		inputPane.add(serverPortLabel, 1, 5);
 		inputPane.add(serverPort, 3, 5);
 		inputPane.add(sendBufferSizeLabel, 1, 7);
@@ -412,7 +408,6 @@ public class ChatServerGUI extends Application implements ChatServerGuiInterface
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-
 				try {
 					chatServer.stop();
 				} catch (Exception e) {
@@ -463,11 +458,6 @@ public class ChatServerGUI extends Application implements ChatServerGuiInterface
 		String implType = new String(comboBoxImplType.getValue().toString());
 
 		return (implType);
-	}
-	
-	private String readAuditLogCombobox() {
-		String auditLogServerType = new String(comboBoxAuditLogType.getValue().toString());
-		return auditLogServerType;
 	}
 
 	/**

@@ -1,5 +1,0 @@
-PDU-TYPE: Login-Request| TIMESTAMP: 2019-01-05 14:49:48.62| USERNAME: gfdhjkjhg| WORKER-THREAD: pool-2-thread-1| CLIENT-THREAD: Client-gfdhjkjhg|
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-05 14:50:06.472| USERNAME: gfdhjkjhg| WORKER-THREAD: gfdhjkjhg| CLIENT-THREAD: Client-gfdhjkjhg| CHAT-MESSAGE: fdsfsfs
-PDU-TYPE: Logout-Request| TIMESTAMP: 2019-01-05 14:50:08.247| USERNAME: gfdhjkjhg| WORKER-THREAD: gfdhjkjhg| CLIENT-THREAD: Client-gfdhjkjhg|
-PDU-TYPE: Undefined| TIMESTAMP: 2019-01-05 14:51:53.49| USERNAME: | WORKER-THREAD: JavaFX Application Thread| CLIENT-THREAD: | SHUTDOWN-MESSAGE: SIMPLE CHAT SERVER WIRD HERUNTERGEFAHREN
-UDP AuditLog Server wird heruntergefahren 2019-01-05 14:51:53.521

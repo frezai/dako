@@ -9,7 +9,7 @@ import java.io.*;
  */
 public class UDPAuditServer {
 	
-	public static void main(String[] args) throws Exception {
+	public static void main() throws Exception {
 		System.out.println("UDP-Server wird gestartet und wartet auf Verbindungsanfragen von Clients...");
 		
 		// Erstellte Textdatei
@@ -37,13 +37,13 @@ public class UDPAuditServer {
 		printer.println(sentence);
 		printer.flush();
 		
-		//Shutdown-Nachricht, um den AuditLog-Server ordnungsgemäß zu beenden.
+		//Shutdown-Nachricht, um den AuditLog-Server ordnungsgemï¿½ï¿½ zu beenden.
 		if (sentence.contains("Undefined")) {
 			System.out.println("UDP AuditLog Server wird heruntergefahren " + new Timestamp(System.currentTimeMillis()));
 			printer.println("UDP AuditLog Server wird heruntergefahren " + new Timestamp(System.currentTimeMillis()));
 			printer.flush();
-			System.exit(0);
 			printer.close();
+			System.exit(0);
 		}
 //		return packet;
 
