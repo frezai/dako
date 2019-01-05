@@ -1,9 +1,7 @@
-package edu.hm.dako.chat.server;
+package edu.hm.dako.chat.common;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import edu.hm.dako.chat.common.ChatPDU;
-import edu.hm.dako.chat.common.PduType;
 
 public class AuditLogPDU implements Serializable  {
 	

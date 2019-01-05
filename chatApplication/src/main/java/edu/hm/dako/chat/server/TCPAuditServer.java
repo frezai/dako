@@ -1,8 +1,10 @@
 package edu.hm.dako.chat.server;
 
+import edu.hm.dako.chat.common.AuditLogPDU;
 import edu.hm.dako.chat.common.PduType;
 
-import java.io.*;
+import java.io.ObjectInputStream;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.sql.Timestamp;
@@ -11,7 +13,7 @@ import java.sql.Timestamp;
  * TCP-AuditLog Server
  *
  */
-class MyTCPAuditServer {
+class TCPAuditServer {
 	
 	public static void main(String[] args) throws Exception {
 		System.out.println("TCP-Server wird gestartet und wartet auf Verbindungsanfragen von Clients...");

@@ -10,15 +10,12 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import edu.hm.dako.chat.common.PduType;
+import edu.hm.dako.chat.common.*;
 import javafx.stage.WindowEvent;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.log4j.PropertyConfigurator;
 
-import edu.hm.dako.chat.common.ExceptionHandler;
-import edu.hm.dako.chat.common.ImplementationType;
-import edu.hm.dako.chat.common.SystemConstants;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -108,6 +105,7 @@ public class ChatServerGUI extends Application implements ChatServerGuiInterface
 	// Moegliche Belegungen des Implementierungsfeldes in der GUI
 	ObservableList<String> implTypeOptions = FXCollections.observableArrayList(
 			SystemConstants.IMPL_TCP_SIMPLE);
+
 	/**
 	 * Konstruktion der ServerGUI
 	 */
@@ -406,6 +404,7 @@ public class ChatServerGUI extends Application implements ChatServerGuiInterface
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+
 				try {
 					chatServer.stop();
 				} catch (Exception e) {
@@ -433,7 +432,6 @@ public class ChatServerGUI extends Application implements ChatServerGuiInterface
 	 */
 	private void reactOnFinishButton() {
 		finishButton.setOnAction(new EventHandler<ActionEvent>() {
-
 			@Override
 			public void handle(ActionEvent event) {
 				try {
