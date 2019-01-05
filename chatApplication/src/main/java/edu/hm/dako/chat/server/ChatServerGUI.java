@@ -170,7 +170,6 @@ public class ChatServerGUI extends Application implements ChatServerGuiInterface
 		final GridPane inputPane = new GridPane();
 
 		final Label label = new Label("Serverauswahl");
-		final Label label2 = new Label("AuditLog Serverauswahl");
 		label.setMinSize(100, 25);
 		label.setMaxSize(100, 25);
 
@@ -188,7 +187,6 @@ public class ChatServerGUI extends Application implements ChatServerGuiInterface
 
 		inputPane.add(label, 1, 3);
 		inputPane.add(comboBoxImplType, 3, 3);
-		inputPane.add(label2, 1, 4);
 		inputPane.add(serverPortLabel, 1, 5);
 		inputPane.add(serverPort, 3, 5);
 		inputPane.add(sendBufferSizeLabel, 1, 7);

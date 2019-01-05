@@ -9,7 +9,7 @@ import java.io.*;
  */
 public class UDPAuditServer {
 	
-	public static void main() throws Exception {
+	public static void main(String[] args) throws Exception {
 		System.out.println("UDP-Server wird gestartet und wartet auf Verbindungsanfragen von Clients...");
 		
 		// Erstellte Textdatei

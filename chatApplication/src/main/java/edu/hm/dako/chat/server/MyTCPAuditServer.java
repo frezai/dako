@@ -13,7 +13,7 @@ import java.sql.Timestamp;
  */
 class MyTCPAuditServer {
 	
-	public static void main() throws Exception {
+	public static void main(String[] args) throws Exception {
 		System.out.println("TCP-Server wird gestartet und wartet auf Verbindungsanfragen von Clients...");
 		
 		// Erstellte Textdatei 
@@ -25,7 +25,7 @@ class MyTCPAuditServer {
 		while (true) {
 			//Verbindungsaufbauwunsch annehmen 
 			Socket connectionSocket = serverSocket.accept();
-			//Empfangen über Inputstream
+			//Empfangen ï¿½ber Inputstream
 			ObjectInputStream in = new ObjectInputStream(connectionSocket.getInputStream());
 			AuditLogPDU pdu = (AuditLogPDU) in.readObject();
 			System.out.println(pdu);
@@ -39,7 +39,7 @@ class MyTCPAuditServer {
 				printer.println("TCP AuditLog Server wird heruntergefahren " + new Timestamp(System.currentTimeMillis()));
 				printer.flush();
 			
-			//Socket und Verbindung schließen
+			//Socket und Verbindung schlieï¿½en
 			connectionSocket.close();
 			in.close();
 			System.exit(0);
