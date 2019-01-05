@@ -301,23 +301,7 @@ public class SimpleChatWorkerThreadImpl extends AbstractWorkerThread {
 	 *            Name des Clients
 	 */
 
-	private void sendToUPDAuditServer(ChatPDU receivedPdu) {
-		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-		AuditLogPDU auditLogPDU = new AuditLogPDU(receivedPdu, timestamp, Thread.currentThread().getName());
-		try {
-			DatagramSocket clientSocket = new DatagramSocket();
-			InetAddress IPAddress = InetAddress.getByName("localhost");
-			byte[] sendData;
-			String sentence = auditLogPDU.toString();
-			sendData = sentence.getBytes();
-			DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, 9876);
-			clientSocket.send(sendPacket);
-			clientSocket.close();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+	
 	private void sendLogoutResponse(String eventInitiatorClient) {
 
 		ClientListEntry client = clients.getClient(eventInitiatorClient);
@@ -464,30 +448,34 @@ public class SimpleChatWorkerThreadImpl extends AbstractWorkerThread {
 			ExceptionHandler.logExceptionAndTerminate(e);
 		}
 	}
-/*
-	private void testMethodeTCP(String input) {
-		try {
-			Socket clientSocket = new Socket("localhost", 6789);
-			ObjectOutputStream outToServer = new ObjectOutputStream(clientSocket.getOutputStream());
-			  outToServer.writeObject(input);
-			  clientSocket.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}*/
+
 
 	private void sendToTCPAuditServer(ChatPDU receivedPdu){
 		try {
 			Socket socket = new Socket("localhost", 6789);
 			ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
-
 			AuditLogPDU pdu = new AuditLogPDU(receivedPdu, new Timestamp(System.currentTimeMillis()), Thread.currentThread().getName());
 			out.writeObject(pdu);
 			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+	}
+	
+	private void sendToUPDAuditServer(ChatPDU receivedPdu) {
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		AuditLogPDU auditLogPDU = new AuditLogPDU(receivedPdu, timestamp, Thread.currentThread().getName());
+		try {
+			DatagramSocket clientSocket = new DatagramSocket();
+			InetAddress IPAddress = InetAddress.getByName("localhost");
+			byte[] sendData;
+			String sentence = auditLogPDU.toString();
+			sendData = sentence.getBytes();
+			DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, 9876);
+			clientSocket.send(sendPacket);
+			clientSocket.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

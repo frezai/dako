@@ -1,12 +1,8 @@
 package edu.hm.dako.chat.server;
 
 import java.io.Serializable;
-import java.sql.Time;
 import java.sql.Timestamp;
-import java.util.Vector;
-
 import edu.hm.dako.chat.common.ChatPDU;
-import edu.hm.dako.chat.common.ClientConversationStatus;
 import edu.hm.dako.chat.common.PduType;
 
 public class AuditLogPDU implements Serializable  {
@@ -24,6 +20,8 @@ public class AuditLogPDU implements Serializable  {
 	
 	// Nutzdaten (eigentliche Chat-Nachricht in Textform)
 	private String message;
+	
+	private String shutdownMessage;
 
 	private Timestamp timestamp;
 
@@ -45,11 +43,11 @@ public class AuditLogPDU implements Serializable  {
 		this.pduType = receivedPDU.getPduType();
 	}
 
-	public AuditLogPDU(PduType pduType, Timestamp timestamp, String serverThreadName) {
+	public AuditLogPDU(PduType pduType, Timestamp timestamp, String serverThreadName, String shutDownMessage) {
 		this.userName = "";
 		this.serverThreadName = serverThreadName;
 		this.clientThreadName = "";
-		this.message = "";
+		this.shutdownMessage = shutDownMessage;
 		this.timestamp = timestamp;
 		this.pduType = pduType;
 	}
@@ -67,6 +65,9 @@ public class AuditLogPDU implements Serializable  {
 		sb.append("CLIENT-THREAD: " + clientThreadName + "| ");
 		if(pduType.toString().equals("Chat-Message-Request")) {
 			sb.append("CHAT-MESSAGE: " + message);
+		}
+		if(pduType.toString().equals("Undefined")) {
+			sb.append("SHUTDOWN-MESSAGE: " + shutdownMessage);
 		}
 		return sb.toString();
 	}

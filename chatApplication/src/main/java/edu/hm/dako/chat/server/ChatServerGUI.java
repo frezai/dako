@@ -81,6 +81,7 @@ public class ChatServerGUI extends Application implements ChatServerGuiInterface
 
 	// Combobox fuer Eingabe des Implementierungstyps
 	private ComboBox<String> comboBoxImplType;
+	private ComboBox<String> comboBoxAuditLogType; 
 
 	// Testfelder, Buttons und Labels der ServerGUI
 
@@ -108,7 +109,7 @@ public class ChatServerGUI extends Application implements ChatServerGuiInterface
 	// Moegliche Belegungen des Implementierungsfeldes in der GUI
 	ObservableList<String> implTypeOptions = FXCollections.observableArrayList(
 			SystemConstants.IMPL_TCP_SIMPLE);
-
+	ObservableList<String> auditLogImplTypeOptions = FXCollections.observableArrayList(SystemConstants.UDP_AUDITLOG, SystemConstants.TCP_AUDITLOG);
 	/**
 	 * Konstruktion der ServerGUI
 	 */
@@ -171,6 +172,7 @@ public class ChatServerGUI extends Application implements ChatServerGuiInterface
 		final GridPane inputPane = new GridPane();
 
 		final Label label = new Label("Serverauswahl");
+		final Label label2 = new Label("AuditLog Serverauswahl");
 		label.setMinSize(100, 25);
 		label.setMaxSize(100, 25);
 
@@ -182,12 +184,15 @@ public class ChatServerGUI extends Application implements ChatServerGuiInterface
 		inputPane.setVgap(1);
 
 		comboBoxImplType = createComboBox(implTypeOptions);
+		comboBoxAuditLogType = createComboBox(auditLogImplTypeOptions);
 		serverPort = createEditableTextfield(DEFAULT_SERVER_PORT);
 		sendBufferSize = createEditableTextfield(DEFAULT_SENDBUFFER_SIZE);
 		receiveBufferSize = createEditableTextfield(DEFAULT_RECEIVEBUFFER_SIZE);
 
 		inputPane.add(label, 1, 3);
 		inputPane.add(comboBoxImplType, 3, 3);
+		inputPane.add(label2, 1, 4);
+		inputPane.add(comboBoxAuditLogType, 3, 4);
 		inputPane.add(serverPortLabel, 1, 5);
 		inputPane.add(serverPort, 3, 5);
 		inputPane.add(sendBufferSizeLabel, 1, 7);
@@ -386,14 +391,14 @@ public class ChatServerGUI extends Application implements ChatServerGuiInterface
 					Socket socket = new Socket("localhost", 6789);
 					ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
 
-					AuditLogPDU pdu = new AuditLogPDU(PduType.UNDEFINED, new Timestamp(System.currentTimeMillis()), Thread.currentThread().getName());
+					AuditLogPDU pdu = new AuditLogPDU(PduType.UNDEFINED, new Timestamp(System.currentTimeMillis()), Thread.currentThread().getName(), "SIMPLE CHAT SERVER WIRD HERUNTERGEFAHREN");
 					out.writeObject(pdu);
 					socket.close();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-				AuditLogPDU auditLogPDU = new AuditLogPDU(PduType.UNDEFINED, timestamp, Thread.currentThread().getName());
+				AuditLogPDU auditLogPDU = new AuditLogPDU(PduType.UNDEFINED, timestamp, Thread.currentThread().getName(), "SIMPLE CHAT SERVER WIRD HERUNTERGEFAHREN");
 				try {
 					DatagramSocket clientSocket = new DatagramSocket();
 					InetAddress IPAddress = InetAddress.getByName("localhost");
@@ -458,6 +463,11 @@ public class ChatServerGUI extends Application implements ChatServerGuiInterface
 		String implType = new String(comboBoxImplType.getValue().toString());
 
 		return (implType);
+	}
+	
+	private String readAuditLogCombobox() {
+		String auditLogServerType = new String(comboBoxAuditLogType.getValue().toString());
+		return auditLogServerType;
 	}
 
 	/**
