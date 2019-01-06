@@ -3,6 +3,10 @@ package edu.hm.dako.chat.common;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+/**
+ * Nachrichtenaufbau fuer Chat-Protokoll (fuer alle Nachrichtentypen: Request,
+ * Response, Event, Confirm)
+ */
 public class AuditLogPDU implements Serializable  {
 	
 	// Login-Name des Clients
@@ -19,10 +23,13 @@ public class AuditLogPDU implements Serializable  {
 	// Nutzdaten (eigentliche Chat-Nachricht in Textform)
 	private String message;
 	
+	// Shutdown Nachricht 
 	private String shutdownMessage;
 
+	//Zeitstempel
 	private Timestamp timestamp;
 
+	//PDU Typ 
 	private PduType pduType;
 
 	public AuditLogPDU() {

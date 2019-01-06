@@ -17,11 +17,14 @@ public class UDPAuditServer {
 		// Erstellte Textdatei
 		PrintWriter printer = new PrintWriter("UDP-file.txt", "UTF-8");
 
+		// Verwendetes UDP-Socket
 		DatagramSocket socket = new DatagramSocket(9876);
 
 		while (true) {
-			byte buffer[] = new byte[6553500];
+			//ein Byte-Array, in das die zu empfangenden Daten eingetragen werden
+			byte buffer[] = new byte[655350];
 			DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
+			//receive, blockiert den Aufrufer, bis ein Datagramm eingeht
 			socket.receive(packet);
 			String sentence = new String(packet.getData()).trim();
 			System.out.println("Daten erhalten: " + sentence);

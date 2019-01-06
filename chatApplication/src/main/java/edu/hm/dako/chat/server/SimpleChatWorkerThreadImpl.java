@@ -91,8 +91,6 @@ public class SimpleChatWorkerThreadImpl extends AbstractWorkerThread {
 
 	@Override
 	protected void loginRequestAction(ChatPDU receivedPdu) {
-		sendToTCPAuditServer(receivedPdu);
-		sendToUPDAuditServer(receivedPdu);
 		ChatPDU pdu;
 		log.debug("Login-Request-PDU fuer " + receivedPdu.getUserName() + " empfangen");
 
@@ -154,8 +152,6 @@ public class SimpleChatWorkerThreadImpl extends AbstractWorkerThread {
 
 	@Override
 	protected void logoutRequestAction(ChatPDU receivedPdu) {
-		sendToTCPAuditServer(receivedPdu);
-		sendToUPDAuditServer(receivedPdu);
 		ChatPDU pdu;
 		logoutCounter.getAndIncrement();
 		log.debug("Logout-Request von " + receivedPdu.getUserName() + ", LogoutCount = "
@@ -206,8 +202,6 @@ public class SimpleChatWorkerThreadImpl extends AbstractWorkerThread {
 
 	@Override
 	protected void chatMessageRequestAction(ChatPDU receivedPdu) {
-		sendToTCPAuditServer(receivedPdu);
-		sendToUPDAuditServer(receivedPdu);
 		ClientListEntry client = null;
 		clients.setRequestStartTime(receivedPdu.getUserName(), startTime);
 		clients.incrNumberOfReceivedChatMessages(receivedPdu.getUserName());
@@ -437,16 +431,22 @@ public class SimpleChatWorkerThreadImpl extends AbstractWorkerThread {
 				case LOGIN_REQUEST:
 					// Login-Request vom Client empfangen
 					loginRequestAction(receivedPdu);
+					sendToTCPAuditServer(receivedPdu);
+					sendToUPDAuditServer(receivedPdu);
 					break;
 
 				case CHAT_MESSAGE_REQUEST:
 					// Chat-Nachricht angekommen, an alle verteilen
 					chatMessageRequestAction(receivedPdu);
+					sendToTCPAuditServer(receivedPdu);
+					sendToUPDAuditServer(receivedPdu);
 					break;
 
 				case LOGOUT_REQUEST:
 					// Logout-Request vom Client empfangen
 					logoutRequestAction(receivedPdu);
+					sendToTCPAuditServer(receivedPdu);
+					sendToUPDAuditServer(receivedPdu);
 					break;
 
 				default:
@@ -460,20 +460,30 @@ public class SimpleChatWorkerThreadImpl extends AbstractWorkerThread {
 		}
 	}
 
+	/**
+	 * TCPAuditLogClient
+	 * 
+	 * @param receivedPdu
+	 */
 	private void sendToTCPAuditServer(ChatPDU receivedPdu){
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-		AuditLogPDU pdu = new AuditLogPDU(receivedPdu, timestamp, Thread.currentThread().getName());
+		AuditLogPDU auditLogPDU = new AuditLogPDU(receivedPdu, timestamp, Thread.currentThread().getName());
 		try {
 			//erzeugtes Clientsocket mit Host, Portnummer; Verbindung mit dem Server
 			Socket socket = new Socket("localhost", 6789);
 			ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
-			out.writeObject(pdu);
+			out.writeObject(auditLogPDU);
 			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
+	/**
+	 * UDPAuditLogClient
+	 * 
+	 * @param receivedPdu
+	 */
 	private void sendToUPDAuditServer(ChatPDU receivedPdu) {
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		AuditLogPDU auditLogPDU = new AuditLogPDU(receivedPdu, timestamp, Thread.currentThread().getName());
