@@ -37,7 +37,7 @@ public class MyAdminTool {
             System.out.println("Ankommende Logouts: " + tcpLogoutCounter);
             System.out.println("Ankommende Chatmessages: " + tcpChatMessageCounter);
         }
-
+        //ein kommentar
         String udpfileName = "UDP-file.txt";
         int udpLoginCounter = 0;
         int udpLogoutCounter = 0;
