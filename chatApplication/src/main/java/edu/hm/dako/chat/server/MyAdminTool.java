@@ -11,32 +11,58 @@ public class MyAdminTool {
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
         //TODO Logdatei namen in den String fileName
-        String fileName = "TCP-file.txt";
-        int loginCounter = 0;
-        int logoutCounter = 0;
-        int chatMessageCounter = 0;
+        String tcpfileName = "TCP-file.txt";
+        int tcpLoginCounter = 0;
+        int tcpLogoutCounter = 0;
+        int tcpChatMessageCounter = 0;
 
 
-        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(tcpfileName))) {
             String currentLine;
             while ((currentLine = br.readLine()) != null) {
 
                 if(currentLine.contains("Login-Request")) {
-                    loginCounter++;
+                    tcpLoginCounter++;
                 }
                 if(currentLine.contains("Logout-Request")) {
-                    logoutCounter++;
+                    tcpLogoutCounter++;
                 }
                 if(currentLine.contains("Chat-Message-Request")) {
-                    chatMessageCounter++;
+                    tcpChatMessageCounter++;
                 }
 
+            }
+            System.out.println("TCP AuditLog Daten:");
+            System.out.println("Angekommene Logins: " + tcpLoginCounter);
+            System.out.println("Ankommende Logouts: " + tcpLogoutCounter);
+            System.out.println("Ankommende Chatmessages: " + tcpChatMessageCounter);
+        }
 
+        String udpfileName = "UDP-file.txt";
+        int udpLoginCounter = 0;
+        int udpLogoutCounter = 0;
+        int udpChatMessageCounter = 0;
+
+
+        try (BufferedReader br = new BufferedReader(new FileReader(udpfileName))) {
+            String currentLine;
+            while ((currentLine = br.readLine()) != null) {
+
+                if(currentLine.contains("Login-Request")) {
+                    udpLoginCounter++;
+                }
+                if(currentLine.contains("Logout-Request")) {
+                    udpLogoutCounter++;
+                }
+                if(currentLine.contains("Chat-Message-Request")) {
+                    udpChatMessageCounter++;
+                }
 
             }
-            System.out.println("Angekommene Logins: " + loginCounter);
-            System.out.println("Ankommende Logouts: " + logoutCounter);
-            System.out.println("Ankommende Chatsmessages: " + chatMessageCounter);
+            System.out.println("UDP AuditLog Daten:");
+            System.out.println("Angekommene Logins: " + udpLoginCounter);
+            System.out.println("Ankommende Logouts: " + udpLogoutCounter);
+            System.out.println("Ankommende Chatmessages: " + udpChatMessageCounter);
         }
     }
 
