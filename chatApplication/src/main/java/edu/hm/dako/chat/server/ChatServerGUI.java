@@ -103,8 +103,7 @@ public class ChatServerGUI extends Application implements ChatServerGuiInterface
 	private ServerStartData data = new ServerStartData();
 
 	// Moegliche Belegungen des Implementierungsfeldes in der GUI
-	ObservableList<String> implTypeOptions = FXCollections.observableArrayList(
-			SystemConstants.IMPL_TCP_SIMPLE);
+	ObservableList<String> implTypeOptions = FXCollections.observableArrayList(SystemConstants.IMPL_TCP_SIMPLE);
 
 	/**
 	 * Konstruktion der ServerGUI
@@ -250,7 +249,7 @@ public class ChatServerGUI extends Application implements ChatServerGuiInterface
 	 * Aufbau der Combobox fuer die Serverauswahl in der GUI
 	 * 
 	 * @param options
-	 *          Optionen fuer Implementierungstyp
+	 *            Optionen fuer Implementierungstyp
 	 * @return Combobox
 	 */
 	private ComboBox<String> createComboBox(ObservableList<String> options) {
@@ -267,9 +266,9 @@ public class ChatServerGUI extends Application implements ChatServerGuiInterface
 	 * Trennlinie erstellen
 	 * 
 	 * @param value
-	 *          Text der Trennlinie
+	 *            Text der Trennlinie
 	 * @param size
-	 *          Groesse der Trennlinie
+	 *            Groesse der Trennlinie
 	 * @return Trennlinie
 	 */
 	private HBox createSeperator(String value, int size) {
@@ -294,7 +293,7 @@ public class ChatServerGUI extends Application implements ChatServerGuiInterface
 	 * Nicht editierbares Feld erzeugen
 	 * 
 	 * @param value
-	 *          Feldinhalt
+	 *            Feldinhalt
 	 * @return Textfeld
 	 */
 	private TextField createNotEditableTextfield(String value) {
@@ -311,7 +310,7 @@ public class ChatServerGUI extends Application implements ChatServerGuiInterface
 	 * Erstellung editierbarer Textfelder
 	 * 
 	 * @param value
-	 *          Feldinhalt
+	 *            Feldinhalt
 	 * @return textField
 	 */
 	private TextField createEditableTextfield(String value) {
@@ -379,18 +378,19 @@ public class ChatServerGUI extends Application implements ChatServerGuiInterface
 		stopButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
+				Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+				AuditLogPDU auditLogPDU = new AuditLogPDU(PduType.UNDEFINED, timestamp, Thread.currentThread().getName(),
+						"SIMPLE CHAT SERVER WIRD HERUNTERGEFAHREN");
+
 				try {
 					Socket socket = new Socket("localhost", 6789);
 					ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
-
-					AuditLogPDU pdu = new AuditLogPDU(PduType.UNDEFINED, new Timestamp(System.currentTimeMillis()), Thread.currentThread().getName(), "SIMPLE CHAT SERVER WIRD HERUNTERGEFAHREN");
-					out.writeObject(pdu);
+					out.writeObject(auditLogPDU);
 					socket.close();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-				AuditLogPDU auditLogPDU = new AuditLogPDU(PduType.UNDEFINED, timestamp, Thread.currentThread().getName(), "SIMPLE CHAT SERVER WIRD HERUNTERGEFAHREN");
+
 				try {
 					DatagramSocket clientSocket = new DatagramSocket();
 					InetAddress IPAddress = InetAddress.getByName("localhost");
@@ -460,16 +460,16 @@ public class ChatServerGUI extends Application implements ChatServerGuiInterface
 	 * Chat-Server starten
 	 * 
 	 * @param implType
-	 *          Implementierungstyp, der zu starten ist
+	 *            Implementierungstyp, der zu starten ist
 	 * @param serverPort
-	 *          Serverport, die der Server als Listener-Port nutzen soll
+	 *            Serverport, die der Server als Listener-Port nutzen soll
 	 * @param sendBufferSize
-	 *          Sendpuffergroeße, die der Server nutzen soll
+	 *            Sendpuffergroeße, die der Server nutzen soll
 	 * @param receiveBufferSize
-	 *          Empfangspuffergroesse, die der Server nutzen soll
+	 *            Empfangspuffergroesse, die der Server nutzen soll
 	 */
-	private void startChatServer(String implType, int serverPort, int sendBufferSize,
-			int receiveBufferSize) throws Exception {
+	private void startChatServer(String implType, int serverPort, int sendBufferSize, int receiveBufferSize)
+			throws Exception {
 
 		ImplementationType serverImpl = null;
 		if (implType.equals(SystemConstants.IMPL_TCP_SIMPLE)) {
@@ -477,8 +477,7 @@ public class ChatServerGUI extends Application implements ChatServerGuiInterface
 		}
 
 		try {
-			chatServer = ServerFactory.getServer(serverImpl, serverPort, sendBufferSize,
-					receiveBufferSize, this);
+			chatServer = ServerFactory.getServer(serverImpl, serverPort, sendBufferSize, receiveBufferSize, this);
 		} catch (Exception e) {
 			log.error("Fehler beim Starten des Chat-Servers: " + e.getMessage());
 			ExceptionHandler.logException(e);
@@ -527,8 +526,7 @@ public class ChatServerGUI extends Application implements ChatServerGuiInterface
 		Integer iSendBufferSize = 0;
 		if (item.matches("[0-9]+")) {
 			iSendBufferSize = new Integer(sendBufferSize.getText());
-			if ((iSendBufferSize <= 0)
-					|| (iSendBufferSize > new Integer(MAX_SENDBUFFER_SIZE))) {
+			if ((iSendBufferSize <= 0) || (iSendBufferSize > new Integer(MAX_SENDBUFFER_SIZE))) {
 				startable = false;
 				sendBufferSizeLabel.setTextFill(Color.web(SystemConstants.RED_COLOR));
 			} else {
@@ -552,8 +550,7 @@ public class ChatServerGUI extends Application implements ChatServerGuiInterface
 		Integer iReceiveBufferSize = 0;
 		if (item.matches("[0-9]+")) {
 			iReceiveBufferSize = new Integer(receiveBufferSize.getText());
-			if ((iReceiveBufferSize <= 0)
-					|| (iReceiveBufferSize > new Integer(MAX_RECEIVEBUFFER_SIZE))) {
+			if ((iReceiveBufferSize <= 0) || (iReceiveBufferSize > new Integer(MAX_RECEIVEBUFFER_SIZE))) {
 				startable = false;
 				receiveBufferSizeLabel.setTextFill(Color.web(SystemConstants.RED_COLOR));
 			} else {
@@ -571,8 +568,8 @@ public class ChatServerGUI extends Application implements ChatServerGuiInterface
 	}
 
 	/**
-	 * GUI-Feld fuer eingeloggte CLients ueber Event-Liste des FavaFX-GUI-Threads
-	 * aktualisieren
+	 * GUI-Feld fuer eingeloggte CLients ueber Event-Liste des
+	 * FavaFX-GUI-Threads aktualisieren
 	 */
 	private void updateLoggedInClients() {
 
@@ -582,8 +579,7 @@ public class ChatServerGUI extends Application implements ChatServerGuiInterface
 			public void run() {
 
 				log.debug("runLater: run-Methode wird ausgefuehrt");
-				log.debug("runLater: Logged in Clients: "
-						+ String.valueOf(loggedInClientCounter.get()));
+				log.debug("runLater: Logged in Clients: " + String.valueOf(loggedInClientCounter.get()));
 
 				loggedInClients.setText(String.valueOf(loggedInClientCounter.get()));
 			}
@@ -618,8 +614,7 @@ public class ChatServerGUI extends Application implements ChatServerGuiInterface
 		;
 		Alert alert = new Alert(Alert.AlertType.WARNING);
 		alert.setTitle("Fehler!");
-		alert.setHeaderText(
-				"Bei den von ihnen eingegebenen Parametern ist ein Fehler aufgetreten:");
+		alert.setHeaderText("Bei den von ihnen eingegebenen Parametern ist ein Fehler aufgetreten:");
 		alert.setContentText(message);
 		Platform.runLater(new Runnable() {
 			@Override

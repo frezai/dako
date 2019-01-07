@@ -14,38 +14,41 @@ import java.sql.Timestamp;
  *
  */
 class TCPAuditServer {
-	
+
 	public static void main(String[] args) throws Exception {
-		System.out.println("TCP-Server wird gestartet und wartet auf Verbindungsanfragen von Clients...");
-		
-		// Erstellte Textdatei 
+		System.out.println("TCP-Server wird gestartet...");
+
+		// Erstellte Textdatei
 		PrintWriter printer = new PrintWriter("TCP-file.txt", "UTF-8");
-		
+
 		// Verwendetes TCP-Socket
 		ServerSocket serverSocket = new ServerSocket(6789);
 
 		while (true) {
-			//Verbindungsaufbauwunsch annehmen 
+			// Verbindungsaufbauwunsch annehmen
 			Socket connectionSocket = serverSocket.accept();
-			//Empfangen ï¿½ber Inputstream
+			// Empfangen ueber Inputstream; implementiert das Interface
+			// ObjectInput und bietet die Möglichkeit, mit der Methode readObject()
+			// serialisierte Objekte aus dem darunterliegenden Stream zu lesen.
 			ObjectInputStream in = new ObjectInputStream(connectionSocket.getInputStream());
 			AuditLogPDU pdu = (AuditLogPDU) in.readObject();
 			System.out.println(pdu);
 			printer.println(pdu);
 			printer.flush();
-//			ObjectOutputStream out = new ObjectOutputStream(connectionSocket.getOutputStream());
-			
-			//Shutdown-Nachricht, um den AuditLog-Server zu beenden.
-			if(pdu.getPduType().equals(PduType.UNDEFINED)) {
-				System.out.println("TCP AuditLog Server wird heruntergefahren " + new Timestamp(System.currentTimeMillis()));
-				printer.println("TCP AuditLog Server wird heruntergefahren " + new Timestamp(System.currentTimeMillis()));
+
+			// Shutdown-Nachricht, um den AuditLog-Server zu beenden.
+			if (pdu.getPduType().equals(PduType.UNDEFINED)) {
+				System.out.println(
+						"TCP AuditLog Server wird heruntergefahren " + new Timestamp(System.currentTimeMillis()));
+				printer.println(
+						"TCP AuditLog Server wird heruntergefahren " + new Timestamp(System.currentTimeMillis()));
 				printer.flush();
-			
-			//Socket und Verbindung schlieï¿½en
-			connectionSocket.close();
-			in.close();
-			System.exit(0);
-			printer.close();
+
+				// Socket, Verbindung, Prozess und Printer schließen
+				connectionSocket.close();
+				in.close();
+				System.exit(0);
+				printer.close();
 			}
 		}
 	}

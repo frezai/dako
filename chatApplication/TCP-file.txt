@@ -1,50 +1,9 @@
-PDU-TYPE: Login-Request| TIMESTAMP: 2019-01-06 12:39:23.264| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| 
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 12:39:23.28| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| CHAT-MESSAGE: ++++++++++
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 12:39:23.364| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| CHAT-MESSAGE: ++++++++++
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 12:39:23.419| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| CHAT-MESSAGE: ++++++++++
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 12:39:23.438| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| CHAT-MESSAGE: ++++++++++
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 12:39:23.478| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| CHAT-MESSAGE: ++++++++++
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 12:39:23.55| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| CHAT-MESSAGE: ++++++++++
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 12:39:23.647| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| CHAT-MESSAGE: ++++++++++
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 12:39:23.753| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| CHAT-MESSAGE: ++++++++++
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 12:39:23.77| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| CHAT-MESSAGE: ++++++++++
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 12:39:23.827| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| CHAT-MESSAGE: ++++++++++
-PDU-TYPE: Logout-Request| TIMESTAMP: 2019-01-06 12:39:24.934| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| 
-PDU-TYPE: Login-Request| TIMESTAMP: 2019-01-06 12:39:40.44| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| 
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 12:39:40.446| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| CHAT-MESSAGE: ++++++++++
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 12:39:40.54| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| CHAT-MESSAGE: ++++++++++
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 12:39:40.577| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| CHAT-MESSAGE: ++++++++++
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 12:39:40.621| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| CHAT-MESSAGE: ++++++++++
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 12:39:40.665| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| CHAT-MESSAGE: ++++++++++
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 12:39:40.734| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| CHAT-MESSAGE: ++++++++++
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 12:39:40.828| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| CHAT-MESSAGE: ++++++++++
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 12:39:40.85| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| CHAT-MESSAGE: ++++++++++
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 12:39:40.89| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| CHAT-MESSAGE: ++++++++++
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 12:39:40.977| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| CHAT-MESSAGE: ++++++++++
-PDU-TYPE: Logout-Request| TIMESTAMP: 2019-01-06 12:39:42.0| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| 
-PDU-TYPE: Login-Request| TIMESTAMP: 2019-01-06 12:39:47.986| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| 
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 12:39:47.991| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| CHAT-MESSAGE: ++++++++++
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 12:39:48.009| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| CHAT-MESSAGE: ++++++++++
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 12:39:48.051| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| CHAT-MESSAGE: ++++++++++
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 12:39:48.06| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| CHAT-MESSAGE: ++++++++++
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 12:39:48.125| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| CHAT-MESSAGE: ++++++++++
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 12:39:48.202| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| CHAT-MESSAGE: ++++++++++
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 12:39:48.28| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| CHAT-MESSAGE: ++++++++++
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 12:39:48.338| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| CHAT-MESSAGE: ++++++++++
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 12:39:48.418| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| CHAT-MESSAGE: ++++++++++
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 12:39:48.436| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| CHAT-MESSAGE: ++++++++++
-PDU-TYPE: Logout-Request| TIMESTAMP: 2019-01-06 12:39:49.477| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| 
-PDU-TYPE: Login-Request| TIMESTAMP: 2019-01-06 12:39:58.158| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| 
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 12:39:58.162| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| CHAT-MESSAGE: ++++++++++
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 12:39:58.265| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| CHAT-MESSAGE: ++++++++++
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 12:39:58.292| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| CHAT-MESSAGE: ++++++++++
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 12:39:58.317| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| CHAT-MESSAGE: ++++++++++
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 12:39:58.37| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| CHAT-MESSAGE: ++++++++++
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 12:39:58.426| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| CHAT-MESSAGE: ++++++++++
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 12:39:58.452| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| CHAT-MESSAGE: ++++++++++
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 12:39:58.524| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| CHAT-MESSAGE: ++++++++++
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 12:39:58.629| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| CHAT-MESSAGE: ++++++++++
-PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 12:39:58.703| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| CHAT-MESSAGE: ++++++++++
-PDU-TYPE: Logout-Request| TIMESTAMP: 2019-01-06 12:39:59.781| USERNAME: Client-Thread-1| WORKER-THREAD: Client-Thread-1| CLIENT-THREAD: Client-Client-Thread-1| 
-PDU-TYPE: Undefined| TIMESTAMP: 2019-01-06 12:40:06.791| USERNAME: | WORKER-THREAD: JavaFX Application Thread| CLIENT-THREAD: | SHUTDOWN-MESSAGE: SIMPLE CHAT SERVER WIRD HERUNTERGEFAHREN
-TCP AuditLog Server wird heruntergefahren 2019-01-06 12:40:06.792
+PDU-TYPE: Login-Request| TIMESTAMP: 2019-01-06 16:22:11.658| USERNAME: dfghj| WORKER-THREAD: pool-2-thread-1| CLIENT-THREAD: Client-dfghj| 
+PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 16:22:14.972| USERNAME: dfghj| WORKER-THREAD: dfghj| CLIENT-THREAD: Client-dfghj| CHAT-MESSAGE: ghj
+PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 16:22:15.854| USERNAME: dfghj| WORKER-THREAD: dfghj| CLIENT-THREAD: Client-dfghj| CHAT-MESSAGE: lk
+PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 16:22:16.806| USERNAME: dfghj| WORKER-THREAD: dfghj| CLIENT-THREAD: Client-dfghj| CHAT-MESSAGE: k
+PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 16:22:17.55| USERNAME: dfghj| WORKER-THREAD: dfghj| CLIENT-THREAD: Client-dfghj| CHAT-MESSAGE: k
+PDU-TYPE: Chat-Message-Request| TIMESTAMP: 2019-01-06 16:22:18.206| USERNAME: dfghj| WORKER-THREAD: dfghj| CLIENT-THREAD: Client-dfghj| CHAT-MESSAGE: k
+PDU-TYPE: Logout-Request| TIMESTAMP: 2019-01-06 16:22:36.137| USERNAME: dfghj| WORKER-THREAD: dfghj| CLIENT-THREAD: Client-dfghj| 
+PDU-TYPE: Undefined| TIMESTAMP: 2019-01-06 16:22:41.861| USERNAME: | WORKER-THREAD: JavaFX Application Thread| CLIENT-THREAD: | SHUTDOWN-MESSAGE: SIMPLE CHAT SERVER WIRD HERUNTERGEFAHREN
+TCP AuditLog Server wird heruntergefahren 2019-01-06 16:22:41.864
