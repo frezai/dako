@@ -432,21 +432,21 @@ public class SimpleChatWorkerThreadImpl extends AbstractWorkerThread {
 					// Login-Request vom Client empfangen
 					loginRequestAction(receivedPdu);
 					sendToTCPAuditServer(receivedPdu);
-					sendToUPDAuditServer(receivedPdu);
+//					sendToUPDAuditServer(receivedPdu);
 					break;
 
 				case CHAT_MESSAGE_REQUEST:
 					// Chat-Nachricht angekommen, an alle verteilen
 					chatMessageRequestAction(receivedPdu);
 					sendToTCPAuditServer(receivedPdu);
-					sendToUPDAuditServer(receivedPdu);
+//					sendToUPDAuditServer(receivedPdu);
 					break;
 
 				case LOGOUT_REQUEST:
 					// Logout-Request vom Client empfangen
 					logoutRequestAction(receivedPdu);
 					sendToTCPAuditServer(receivedPdu);
-					sendToUPDAuditServer(receivedPdu);
+//					sendToUPDAuditServer(receivedPdu);
 					break;
 
 				default:
@@ -470,7 +470,7 @@ public class SimpleChatWorkerThreadImpl extends AbstractWorkerThread {
 		AuditLogPDU auditLogPDU = new AuditLogPDU(receivedPdu, timestamp, Thread.currentThread().getName());
 		try {
 			//erzeugtes Clientsocket mit Host, Portnummer; Verbindung mit dem Server
-			Socket socket = new Socket("localhost", 6789);
+			Socket socket = new Socket("10.179.4.242", 6789);
 			ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
 			out.writeObject(auditLogPDU);
 			socket.close();

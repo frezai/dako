@@ -7,10 +7,15 @@ import java.io.IOException;
 
 import edu.hm.dako.chat.common.PduType;
 
+/**
+ * Ein Administrationsprogramm, das das AuditLog ausliest 
+ * und aufbereitete Informationen zum Inhalt ausgibt.
+ *
+ */
 public class MyAdminTool {
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
-        //TODO Logdatei namen in den String fileName
+    	//TCP-AuditLog Administrationstool
         String tcpfileName = "TCP-file.txt";
         int tcpLoginCounter = 0;
         int tcpLogoutCounter = 0;
@@ -32,12 +37,13 @@ public class MyAdminTool {
                 }
 
             }
-            System.out.println("TCP AuditLog Daten:");
+            System.out.println("TCP AuditLog Daten");
             System.out.println("Angekommene Logins: " + tcpLoginCounter);
-            System.out.println("Ankommende Logouts: " + tcpLogoutCounter);
-            System.out.println("Ankommende Chatmessages: " + tcpChatMessageCounter);
+            System.out.println("Angekommene Logouts: " + tcpLogoutCounter);
+            System.out.println("Angekommene Chatmessages: " + tcpChatMessageCounter + "\n");
         }
-        //ein kommentar
+        
+        //UDP-AuditLog Administrationstool
         String udpfileName = "UDP-file.txt";
         int udpLoginCounter = 0;
         int udpLogoutCounter = 0;
@@ -59,13 +65,10 @@ public class MyAdminTool {
                 }
 
             }
-            System.out.println("UDP AuditLog Daten:");
+            System.out.println("UDP AuditLog Daten");
             System.out.println("Angekommene Logins: " + udpLoginCounter);
-            System.out.println("Ankommende Logouts: " + udpLogoutCounter);
-            System.out.println("Ankommende Chatmessages: " + udpChatMessageCounter);
+            System.out.println("Angekommene Logouts: " + udpLogoutCounter);
+            System.out.println("Angekommene Chatmessages: " + udpChatMessageCounter);
         }
     }
-
-
-
 }
